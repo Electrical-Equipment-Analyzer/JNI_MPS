@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="90">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>src/MPS140801IEPE.cpp</itemPath>
+      <itemPath>src/MPS_140801_IEPE.h</itemPath>
+      <itemPath>src/NativeUtils.cpp</itemPath>
+      <itemPath>src/NativeUtils.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="2">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <incDir>
+            <pElem>../../../target/header</pElem>
+            <pElem>C:/Program Files/Java/jdk1.7.0_45/include</pElem>
+            <pElem>C:/Program Files/Java/jdk1.7.0_45/include/win32</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jniMPS.${CND_DLIB_EXT}</output>
+        </linkerTool>
+      </compileType>
+      <item path="src/MPS140801IEPE.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/MPS_140801_IEPE.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/NativeUtils.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/NativeUtils.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="2">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <incDir>
+            <pElem>${TARGET_DIR}/header</pElem>
+            <pElem>${JAVA_HOME}/include</pElem>
+            <pElem>${JAVA_HOME}/include/win32</pElem>
+          </incDir>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jniMPS.${CND_DLIB_EXT}</output>
+        </linkerTool>
+      </compileType>
+      <item path="src/MPS140801IEPE.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/MPS_140801_IEPE.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/NativeUtils.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/NativeUtils.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
