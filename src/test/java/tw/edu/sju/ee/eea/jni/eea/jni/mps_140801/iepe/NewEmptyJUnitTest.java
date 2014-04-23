@@ -118,13 +118,13 @@ public class NewEmptyJUnitTest extends TestCase {
 //            }
 //        }
 
-        MPS140801IEPE mps = new MPS140801IEPE();
+        MPS140801IEPE mps = new MPS140801IEPE(0, 12800);
         try {
             mps.openDevice(0);
             mps.configure(128000);
             mps.start();
             double[][] dataBuffer = new double[8][sample.length];
-            for (int tt = 0; tt < 10000; tt++) {
+            for (int tt = 0; tt < 10; tt++) {
 
                 mps.dataIn(dataBuffer);
 //                for (int i = 0; i < 8; i++) {
@@ -137,7 +137,6 @@ public class NewEmptyJUnitTest extends TestCase {
 //                for (int i = 0; i < sample.length; i++) {
 //                    System.out.println(sample[i]);
 //                };
-                
                 audioOut.write(sample, 0, sample.length);
 //        System.exit(0);
             }

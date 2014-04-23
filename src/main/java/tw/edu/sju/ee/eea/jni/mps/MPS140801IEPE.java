@@ -9,12 +9,19 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tw.edu.sju.ee.commons.nativeutils.NativeUtils;
+import tw.edu.sju.ee.eea.iepe.IEPEDevice;
+import tw.edu.sju.ee.eea.iepe.IEPEException;
 
 /**
  *
  * @author Leo
  */
-public class MPS140801IEPE {
+public class MPS140801IEPE implements IEPEDevice {
+
+    public static final int CHANNEL = 8;
+
+    private int deviceNumber;
+    private int sampleRate;
 
     static {
         try {
@@ -30,18 +37,16 @@ public class MPS140801IEPE {
     //Java Object
     private long nativeStruct;
 
-    public MPS140801IEPE() {
+    public MPS140801IEPE(int deviceNumber, int sampleRate) {
         construct();
+        this.deviceNumber = deviceNumber;
+        this.sampleRate = sampleRate;
     }
 
     @Override
     protected void finalize() throws Throwable {
         this.destruct();
         super.finalize();
-    }
-
-    private void warning(String msg) {
-        Logger.getLogger(MPS140801IEPE.class.getName()).log(Level.WARNING, msg);
     }
 
     //**************************************************************************
@@ -56,8 +61,8 @@ public class MPS140801IEPE {
 
     //**************************************************************************
     public native void openDevice(int deviceNumber) throws MPSException;
-    
-    public native int getDeviceID() throws MPSException;
+
+    public native int getDeviceId() throws MPSException;
 
     public native void configure(int sampleRate) throws MPSException;
 
@@ -68,4 +73,23 @@ public class MPS140801IEPE {
     public native void stop() throws MPSException;
 
     public native void closeDevice() throws MPSException;
+
+    //**************************************************************************
+    @Override
+    public void openDevice() throws IEPEException {
+        this.openDevice(deviceNumber);
+    }
+
+    @Override
+    public void configure() throws IEPEException {
+        this.configure(sampleRate);
+    }
+
+    @Override
+    public double[][] read(int length) throws IEPEException {
+        double[][] data = new double[MPS140801IEPE.CHANNEL][length];
+        dataIn(data);
+        return data;
+    }
+
 }

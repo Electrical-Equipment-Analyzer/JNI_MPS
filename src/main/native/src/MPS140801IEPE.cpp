@@ -65,7 +65,7 @@ JNIEXPORT void JNICALL Java_tw_edu_sju_ee_eea_jni_mps_MPS140801IEPE_openDevice
     getStruct(env, obj)->DeviceHandle = MPS_OpenDevice(deviceNumber);
 }
 
-JNIEXPORT jint JNICALL Java_tw_edu_sju_ee_eea_jni_mps_MPS140801IEPE_getDeviceID
+JNIEXPORT jint JNICALL Java_tw_edu_sju_ee_eea_jni_mps_MPS140801IEPE_getDeviceId
 (JNIEnv *env, jobject obj) {
     return MPS_GetDeviceID(getStruct(env, obj)->DeviceHandle);
 }
