@@ -109,7 +109,7 @@ public class TestStream {
 //                System.out.println(i + "\t" + qs.read());
 //            }
             
-            for (int i = 0; i < 10000000; i++) {
+            for (int i = 0; i < 100000000; i++) {
 //                byte[] buffer = QuantizationStream.quantization(vi.readVoltage(), 16);
                 byte[] left = QuantizationStream.quantization(vi_left.readVoltage(), 16);
                 byte[] right = QuantizationStream.quantization(vi_right.readVoltage(), 16);
