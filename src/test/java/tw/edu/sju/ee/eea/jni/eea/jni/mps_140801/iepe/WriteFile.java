@@ -22,10 +22,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import tw.edu.sju.ee.eea.iepe.IEPEException;
-import tw.edu.sju.ee.eea.iepe.IEPEInput;
-import tw.edu.sju.ee.eea.iepe.IEPEInputStream;
-import tw.edu.sju.ee.eea.io.VoltageInputStream;
+import tw.edu.sju.ee.eea.util.iepe.IEPEException;
+import tw.edu.sju.ee.eea.util.iepe.IEPEInput;
+import tw.edu.sju.ee.eea.util.iepe.IEPEInputStream;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801IEPE;
 
 /**

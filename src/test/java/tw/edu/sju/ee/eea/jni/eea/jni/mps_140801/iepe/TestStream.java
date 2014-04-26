@@ -17,24 +17,19 @@
  */
 package tw.edu.sju.ee.eea.jni.eea.jni.mps_140801.iepe;
 
-import java.awt.image.DataBufferInt;
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.sound.sampled.Line;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
-import tw.edu.sju.ee.eea.iepe.IEPEException;
-import tw.edu.sju.ee.eea.iepe.IEPEInput;
-import tw.edu.sju.ee.eea.io.QuantizationStream;
-import tw.edu.sju.ee.eea.io.VoltageInputStream;
+import tw.edu.sju.ee.eea.util.iepe.IEPEException;
+import tw.edu.sju.ee.eea.util.iepe.IEPEInput;
+import tw.edu.sju.ee.eea.util.iepe.QuantizationStream;
+import tw.edu.sju.ee.eea.util.iepe.VoltageInputStream;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801IEPE;
 
 /**
@@ -109,10 +104,13 @@ public class TestStream {
 //                System.out.println(i + "\t" + qs.read());
 //            }
             
+            QuantizationStream qs_left = new QuantizationStream(vi_left, 16, 0.5);
+            QuantizationStream qs_right = new QuantizationStream(vi_right, 16, 0.5);
+            
             for (int i = 0; i < 100000000; i++) {
 //                byte[] buffer = QuantizationStream.quantization(vi.readVoltage(), 16);
-                byte[] left = QuantizationStream.quantization(vi_left.readVoltage(), 16);
-                byte[] right = QuantizationStream.quantization(vi_right.readVoltage(), 16);
+                byte[] left = qs_left.readQuantization();
+                byte[] right = qs_right.readQuantization();
                 byte[] buffer = new byte[left.length + right.length];
                 System.arraycopy(left, 0, buffer, 0, left.length);
                 System.arraycopy(right, 0, buffer, left.length, right.length);

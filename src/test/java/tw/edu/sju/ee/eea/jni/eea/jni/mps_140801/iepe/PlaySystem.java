@@ -21,11 +21,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PipedOutputStream;
+import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import tw.edu.sju.ee.eea.io.QuantizationStream;
-import tw.edu.sju.ee.eea.io.VoltageInputStream;
+import tw.edu.sju.ee.eea.util.iepe.IEPEPlayer;
 
 /**
  *
@@ -41,28 +40,28 @@ public class PlaySystem {
             fis = new FileInputStream(file);
 //            VoltageInputStream vi = new VoltageInputStream(fis);
             
-            Audio audio = new Audio();
-            audio.startPlay();
+            IEPEPlayer player = new IEPEPlayer();
+            player.startPlay();
             
-            PipedOutputStream pipeOut = audio.getPipeOut();
-            fis.skip(1800000);
-            for (int i = 0; i < 1000; i++) {
+            OutputStream out = player.getOutputStream();
+//            fis.skip(1800000);
+            for (int i = 0; i < 5000; i++) {
                 byte[] buffer = new byte[1024];
                 fis.read(buffer);
-                pipeOut.write(buffer, 0, buffer.length);
+                out.write(buffer, 0, buffer.length);
             }
-            System.out.println("Pause");
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(PlaySystem.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            for (int i = 0; i < 1000; i++) {
+//            System.out.println("Pause");
+//            try {
+//                Thread.sleep(5000);
+//            } catch (InterruptedException ex) {
+//                Logger.getLogger(PlaySystem.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            for (int i = 0; i < 5000; i++) {
                 byte[] buffer = new byte[1024];
                 fis.read(buffer);
-                pipeOut.write(buffer, 0, buffer.length);
+                out.write(buffer, 0, buffer.length);
             }
-            audio.stopPlay();
+            player.stopPlay();
             
             
         } catch (FileNotFoundException ex) {

@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tw.edu.sju.ee.commons.nativeutils.NativeUtils;
-import tw.edu.sju.ee.eea.iepe.IEPEDevice;
-import tw.edu.sju.ee.eea.iepe.IEPEException;
+import tw.edu.sju.ee.eea.util.iepe.IEPEDevice;
+import tw.edu.sju.ee.eea.util.iepe.IEPEException;
 
 /**
  *

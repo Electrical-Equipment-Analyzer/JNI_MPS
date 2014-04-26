@@ -6,7 +6,7 @@
 
 package tw.edu.sju.ee.eea.jni.mps;
 
-import tw.edu.sju.ee.eea.iepe.IEPEException;
+import tw.edu.sju.ee.eea.util.iepe.IEPEException;
 
 /**
  *

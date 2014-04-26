@@ -30,8 +30,8 @@ import javax.sound.sampled.Line;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
-import tw.edu.sju.ee.eea.io.QuantizationStream;
-import tw.edu.sju.ee.eea.io.VoltageInputStream;
+import tw.edu.sju.ee.eea.util.iepe.QuantizationStream;
+import tw.edu.sju.ee.eea.util.iepe.VoltageInputStream;
 
 /**
  *
@@ -84,7 +84,7 @@ public class ReadFile {
             fis = new FileInputStream(file);
             VoltageInputStream vi = new VoltageInputStream(fis);
             QuantizationStream qs = new QuantizationStream(vi, 1);
-            vi.skipBytes(1500000);
+            vi.skip(1500000);
             for (int i = 0; i < 100000000; i++) {
                 
                 byte[] buffer = new byte[2];

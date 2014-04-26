@@ -17,10 +17,7 @@
  */
 package tw.edu.sju.ee.eea.jni.eea.jni.mps_140801.iepe;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,8 +28,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
 import junit.framework.TestCase;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801IEPE;
 import tw.edu.sju.ee.eea.jni.mps.MPSException;
 

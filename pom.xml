@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>tw.edu.sju.ee.eea.jni</groupId>
-    <artifactId>eea-jni.MPS</artifactId>
+    <artifactId>jni-mps</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>eea-jni.MPS</name>
+    <name>sju-eea.jni-mps</name>
 
     <parent>
         <groupId>tw.edu.sju.ee.eea</groupId>
@@ -63,7 +63,13 @@
         <dependency>
             <groupId>tw.edu.sju.ee.eea.commons</groupId>
             <artifactId>commons-nativeutils</artifactId>
-            <version>1.1</version>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>tw.edu.sju.ee.eea.util</groupId>
+            <artifactId>sju-eea-util.iepe</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 </project>
