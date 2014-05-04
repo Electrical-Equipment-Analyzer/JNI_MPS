@@ -35,7 +35,7 @@ public class PlaySystem {
     public static void main(String[] args) {
         FileInputStream fis = null;
         try {
-            File file = new File("rec.iepe");
+            File file = new File("rec3.iepe");
             file.setReadOnly();
             fis = new FileInputStream(file);
 //            VoltageInputStream vi = new VoltageInputStream(fis);

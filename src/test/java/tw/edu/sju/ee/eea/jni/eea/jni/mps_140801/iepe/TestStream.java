@@ -28,8 +28,8 @@ import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
 import tw.edu.sju.ee.eea.util.iepe.IEPEException;
 import tw.edu.sju.ee.eea.util.iepe.IEPEInput;
-import tw.edu.sju.ee.eea.util.iepe.QuantizationStream;
-import tw.edu.sju.ee.eea.util.iepe.VoltageInputStream;
+import tw.edu.sju.ee.eea.util.iepe.io.QuantizationStream;
+import tw.edu.sju.ee.eea.util.iepe.io.IepeInputStream;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801IEPE;
 
 /**
@@ -40,12 +40,12 @@ public class TestStream {
 
     public static void main(String[] args) {
         try {
-            IEPEInput iepe = new IEPEInput(new MPS140801IEPE(0, 128000), new int[]{1,2}, 512);
+            IEPEInput iepe = new IEPEInput(new MPS140801IEPE(0, 128000), new int[]{1, 2}, 512);
             iepe.startIEPE();
 
 //            VoltageInputStream vi = new VoltageInputStream(iepe.getIepeStreams(0));
-            VoltageInputStream vi_left = new VoltageInputStream(iepe.getIepeStreams(0));
-            VoltageInputStream vi_right = new VoltageInputStream(iepe.getIepeStreams(1));
+            IepeInputStream vi_left = iepe.getIepeStreams(0);
+            IepeInputStream vi_right = iepe.getIepeStreams(1);
 //            for (int i = 0; i < 100; i++) {
 //                System.out.println(vi.readVoltage());
 //            }
@@ -99,15 +99,14 @@ public class TestStream {
             }
 
             audioOut.start();
-            
+
 //            for (int i = 0; i < 10240; i++) {
 //                System.out.println(i + "\t" + qs.read());
 //            }
-            
             QuantizationStream qs_left = new QuantizationStream(vi_left, 16, 0.5);
             QuantizationStream qs_right = new QuantizationStream(vi_right, 16, 0.5);
-            
-            for (int i = 0; i < 100000000; i++) {
+
+            for (int i = 0; i < 1000000; i++) {
 //                byte[] buffer = QuantizationStream.quantization(vi.readVoltage(), 16);
                 byte[] left = qs_left.readQuantization();
                 byte[] right = qs_right.readQuantization();

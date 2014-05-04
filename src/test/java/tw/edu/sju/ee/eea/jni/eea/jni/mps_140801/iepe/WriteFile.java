@@ -24,7 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import tw.edu.sju.ee.eea.util.iepe.IEPEException;
 import tw.edu.sju.ee.eea.util.iepe.IEPEInput;
-import tw.edu.sju.ee.eea.util.iepe.IEPEInputStream;
+import tw.edu.sju.ee.eea.util.iepe.io.IepeInputStream;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801IEPE;
 
 /**
@@ -38,10 +38,10 @@ public class WriteFile {
         try {
             IEPEInput iepe = new IEPEInput(new MPS140801IEPE(0, 16000), new int[]{1}, 512);
             iepe.startIEPE();
-            IEPEInputStream iepeStreams = iepe.getIepeStreams(0);
+            IepeInputStream iepeStreams = iepe.getIepeStreams(0);
 //            VoltageInputStream vi_left = new VoltageInputStream(iepe.getIepeStreams(0));
 
-            File file = new File("rec.iepe");
+            File file = new File("rec3.iepe");
             file.createNewFile();
             FileOutputStream fos = new FileOutputStream(file);
 

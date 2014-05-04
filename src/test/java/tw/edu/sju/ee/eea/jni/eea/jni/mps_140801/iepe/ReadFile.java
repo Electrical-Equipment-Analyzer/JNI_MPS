@@ -30,8 +30,8 @@ import javax.sound.sampled.Line;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
-import tw.edu.sju.ee.eea.util.iepe.QuantizationStream;
-import tw.edu.sju.ee.eea.util.iepe.VoltageInputStream;
+import tw.edu.sju.ee.eea.util.iepe.io.QuantizationStream;
+import tw.edu.sju.ee.eea.util.iepe.io.IepeInputStream;
 
 /**
  *
@@ -82,7 +82,7 @@ public class ReadFile {
             File file = new File("rec.iepe");
             file.setReadOnly();
             fis = new FileInputStream(file);
-            VoltageInputStream vi = new VoltageInputStream(fis);
+            IepeInputStream vi = new IepeInputStream(fis);
             QuantizationStream qs = new QuantizationStream(vi, 1);
             vi.skip(1500000);
             for (int i = 0; i < 100000000; i++) {
