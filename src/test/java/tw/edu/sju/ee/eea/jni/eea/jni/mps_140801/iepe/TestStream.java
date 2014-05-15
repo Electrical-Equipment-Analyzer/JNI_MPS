@@ -18,6 +18,7 @@
 package tw.edu.sju.ee.eea.jni.eea.jni.mps_140801.iepe;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioFormat;
@@ -41,11 +42,19 @@ public class TestStream {
     public static void main(String[] args) {
         try {
             IEPEInput iepe = new IEPEInput(new MPS140801IEPE(0, 128000), new int[]{1, 2}, 512);
-            iepe.startIEPE();
+            Thread thread = new Thread(iepe);
+            thread.start();
 
+            
+            IEPEInput.IepeStream vi_left = new IEPEInput.IepeStream();
+            IEPEInput.IepeStream vi_right = new IEPEInput.IepeStream();
+            
+            iepe.addStream(1, vi_left);
+            iepe.addStream(2, vi_right);
+            
 //            VoltageInputStream vi = new VoltageInputStream(iepe.getIepeStreams(0));
-            IepeInputStream vi_left = iepe.getIepeStreams(0);
-            IepeInputStream vi_right = iepe.getIepeStreams(1);
+//            IepeInputStream vi_left = iepe.getIepeStreams(0);
+//            IepeInputStream vi_right = iepe.getIepeStreams(1);
 //            for (int i = 0; i < 100; i++) {
 //                System.out.println(vi.readVoltage());
 //            }
@@ -106,7 +115,7 @@ public class TestStream {
             QuantizationStream qs_left = new QuantizationStream(vi_left, 16, 0.5);
             QuantizationStream qs_right = new QuantizationStream(vi_right, 16, 0.5);
 
-            for (int i = 0; i < 1000000; i++) {
+            for (int i = 0; i < 100000000; i++) {
 //                byte[] buffer = QuantizationStream.quantization(vi.readVoltage(), 16);
                 byte[] left = qs_left.readQuantization();
                 byte[] right = qs_right.readQuantization();
@@ -119,10 +128,8 @@ public class TestStream {
             }
             System.out.println("Stop");
             audioOut.close();
-            iepe.stopIEPE();
+            thread.stop();
 
-        } catch (IEPEException ex) {
-            Logger.getLogger(TestStream.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(TestStream.class.getName()).log(Level.SEVERE, null, ex);
         }

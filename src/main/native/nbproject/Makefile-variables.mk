@@ -7,21 +7,21 @@ CND_BASEDIR=`pwd`
 CND_BUILDDIR=build
 CND_DISTDIR=dist
 # Debug configuration
-CND_PLATFORM_Debug=MinGW_TDM-Windows
-CND_ARTIFACT_DIR_Debug=dist/Debug/MinGW_TDM-Windows
+CND_PLATFORM_Debug=Cygwin_4.x-Windows
+CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin_4.x-Windows
 CND_ARTIFACT_NAME_Debug=jniMPS.dll
-CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW_TDM-Windows/jniMPS.dll
-CND_PACKAGE_DIR_Debug=dist/Debug/MinGW_TDM-Windows/package
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin_4.x-Windows/jniMPS.dll
+CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin_4.x-Windows/package
 CND_PACKAGE_NAME_Debug=libnative.dll.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/MinGW_TDM-Windows/package/libnative.dll.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin_4.x-Windows/package/libnative.dll.tar
 # Release configuration
-CND_PLATFORM_Release=MinGW_TDM-Windows
-CND_ARTIFACT_DIR_Release=dist/Release/MinGW_TDM-Windows
+CND_PLATFORM_Release=Cygwin_4.x-Windows
+CND_ARTIFACT_DIR_Release=dist/Release/Cygwin_4.x-Windows
 CND_ARTIFACT_NAME_Release=jniMPS.dll
-CND_ARTIFACT_PATH_Release=dist/Release/MinGW_TDM-Windows/jniMPS.dll
-CND_PACKAGE_DIR_Release=dist/Release/MinGW_TDM-Windows/package
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin_4.x-Windows/jniMPS.dll
+CND_PACKAGE_DIR_Release=dist/Release/Cygwin_4.x-Windows/package
 CND_PACKAGE_NAME_Release=libnative.dll.tar
-CND_PACKAGE_PATH_Release=dist/Release/MinGW_TDM-Windows/package/libnative.dll.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin_4.x-Windows/package/libnative.dll.tar
 #
 # include compiler specific variables
 #

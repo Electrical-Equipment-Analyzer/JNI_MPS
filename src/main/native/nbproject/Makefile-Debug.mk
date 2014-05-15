@@ -21,7 +21,7 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=MinGW_TDM-Windows
+CND_PLATFORM=Cygwin_4.x-Windows
 CND_DLIB_EXT=dll
 CND_CONF=Debug
 CND_DISTDIR=dist
@@ -66,12 +66,12 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jniMPS.${CND_DLIB_EXT}: ${OBJECTFILES
 ${OBJECTDIR}/src/MPS140801IEPE.o: src/MPS140801IEPE.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../../../target/header -I/C/Program\ Files/Java/jdk1.7.0_45/include -I/C/Program\ Files/Java/jdk1.7.0_45/include/win32  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/MPS140801IEPE.o src/MPS140801IEPE.cpp
+	$(COMPILE.cc) -g -I../../../target/header -I/cygdrive/C/Program\ Files/Java/jdk1.7.0_45/include -I/cygdrive/C/Program\ Files/Java/jdk1.7.0_45/include/win32  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/MPS140801IEPE.o src/MPS140801IEPE.cpp
 
 ${OBJECTDIR}/src/NativeUtils.o: src/NativeUtils.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../../../target/header -I/C/Program\ Files/Java/jdk1.7.0_45/include -I/C/Program\ Files/Java/jdk1.7.0_45/include/win32  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NativeUtils.o src/NativeUtils.cpp
+	$(COMPILE.cc) -g -I../../../target/header -I/cygdrive/C/Program\ Files/Java/jdk1.7.0_45/include -I/cygdrive/C/Program\ Files/Java/jdk1.7.0_45/include/win32  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NativeUtils.o src/NativeUtils.cpp
 
 # Subprojects
 .build-subprojects:

@@ -4,10 +4,10 @@
 
     <groupId>tw.edu.sju.ee.eea.jni</groupId>
     <artifactId>jni-mps</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>sju-eea.jni-mps</name>
+    <name>EEA JNI MPS</name>
 
     <parent>
         <groupId>tw.edu.sju.ee.eea</groupId>
@@ -61,14 +61,14 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>tw.edu.sju.ee.eea.commons</groupId>
-            <artifactId>commons-nativeutils</artifactId>
-            <version>1.0.1</version>
+            <groupId>tw.edu.sju.ee.eea.jni</groupId>
+            <artifactId>jni-util</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>tw.edu.sju.ee.eea.util</groupId>
-            <artifactId>sju-eea-util.iepe</artifactId>
-            <version>1.0</version>
+            <artifactId>util-iepe</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
     </dependencies>

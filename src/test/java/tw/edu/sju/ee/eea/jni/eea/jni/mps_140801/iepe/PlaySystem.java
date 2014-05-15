@@ -35,13 +35,14 @@ public class PlaySystem {
     public static void main(String[] args) {
         FileInputStream fis = null;
         try {
-            File file = new File("rec3.iepe");
+            File file = new File("rec.iepe");
             file.setReadOnly();
             fis = new FileInputStream(file);
 //            VoltageInputStream vi = new VoltageInputStream(fis);
             
             IEPEPlayer player = new IEPEPlayer();
-            player.startPlay();
+            Thread playThread = new Thread(player);
+            playThread.start();
             
             OutputStream out = player.getOutputStream();
 //            fis.skip(1800000);
@@ -61,7 +62,7 @@ public class PlaySystem {
                 fis.read(buffer);
                 out.write(buffer, 0, buffer.length);
             }
-            player.stopPlay();
+            playThread.stop();
             
             
         } catch (FileNotFoundException ex) {

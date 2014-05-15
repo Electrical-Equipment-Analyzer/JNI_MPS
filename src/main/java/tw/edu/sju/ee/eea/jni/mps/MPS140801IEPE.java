@@ -8,7 +8,7 @@ package tw.edu.sju.ee.eea.jni.mps;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import tw.edu.sju.ee.commons.nativeutils.NativeUtils;
+import tw.edu.sju.ee.eea.jni.util.NativeUtils;
 import tw.edu.sju.ee.eea.util.iepe.IEPEDevice;
 import tw.edu.sju.ee.eea.util.iepe.IEPEException;
 

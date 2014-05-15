@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioFormat;
@@ -83,12 +84,14 @@ public class ReadFile {
             file.setReadOnly();
             fis = new FileInputStream(file);
             IepeInputStream vi = new IepeInputStream(fis);
-            QuantizationStream qs = new QuantizationStream(vi, 1);
-            vi.skip(1500000);
+//            for (int i = 0; i < 128; i++) {
+//                System.out.print(vi.readValue() + ", ");
+//            }
+            QuantizationStream qs = new QuantizationStream(vi, 8);
+//            vi.skip(1500000);
             for (int i = 0; i < 100000000; i++) {
                 
-                byte[] buffer = new byte[2];
-                qs.read(buffer);
+                byte[] buffer = qs.readQuantization();
 //                byte[] buffer = QuantizationStream.quantization(vi.readVoltage(), 16);
 //                byte[] left = QuantizationStream.quantization(vi_left.readVoltage(), 16);
 //                byte[] right = QuantizationStream.quantization(vi_right.readVoltage(), 16);

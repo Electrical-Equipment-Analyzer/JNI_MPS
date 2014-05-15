@@ -20,6 +20,7 @@ package tw.edu.sju.ee.eea.jni.eea.jni.mps_140801.iepe;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,21 +28,26 @@ import tw.edu.sju.ee.eea.util.iepe.IEPEException;
 import tw.edu.sju.ee.eea.util.iepe.IEPEInput;
 import tw.edu.sju.ee.eea.util.iepe.io.IepeInputStream;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801IEPE;
+import tw.edu.sju.ee.eea.util.iepe.IEPEPlayer;
 
 /**
  *
  * @author Leo
  */
-public class WriteFile {
+public class SystemPass {
 
     public static void main(String[] args) {
 
         try {
-            IEPEInput iepe = new IEPEInput(new MPS140801IEPE(0, 16000), new int[]{1}, 512);
             
+            IEPEPlayer player = new IEPEPlayer();
+            Thread playThread = new Thread(player);
+            playThread.start();
+            OutputStream playOut = player.getOutputStream();
+            
+            IEPEInput iepe = new IEPEInput(new MPS140801IEPE(0, 16000), new int[]{1}, 512);
             IEPEInput.IepeStream iepeStream = new IEPEInput.IepeStream();
             iepe.addStream(1, iepeStream);
-            
             Thread thread = new Thread(iepe);
             thread.start();
 //            IepeInputStream iepeStreams = iepe.getIepeStreams(0);
@@ -51,16 +57,17 @@ public class WriteFile {
 //            file.createNewFile();
 //            FileOutputStream fos = new FileOutputStream(file);
 
-            for (int i = 0; i < 1000000; i++) {
-//                byte[] buffer = new byte[64];
-                double readValue = iepeStream.readValue();
-                System.out.println(readValue);
+            for (int i = 0; i < 1000; i++) {
+                byte[] buffer = new byte[64];
+                iepeStream.read(buffer);
+                playOut.write(buffer);
 //                System.out.println(Arrays.toString(buffer));
 //                fos.write(buffer, 0, buffer.length);
             }
 //            fos.close();
 
             thread.stop();
+            playThread.stop();
         } catch (IOException ex) {
             Logger.getLogger(TestStream.class.getName()).log(Level.SEVERE, null, ex);
         }
