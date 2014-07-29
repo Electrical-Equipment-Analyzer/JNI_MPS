@@ -40,7 +40,7 @@ public class PlaySystem {
             fis = new FileInputStream(file);
 //            VoltageInputStream vi = new VoltageInputStream(fis);
             
-            IEPEPlayer player = new IEPEPlayer();
+            IEPEPlayer player = new IEPEPlayer(16000, 16, 1, 2, 16000);
             Thread playThread = new Thread(player);
             playThread.start();
             
