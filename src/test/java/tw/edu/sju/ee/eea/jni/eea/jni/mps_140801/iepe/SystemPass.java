@@ -26,7 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import tw.edu.sju.ee.eea.util.iepe.IEPEException;
 import tw.edu.sju.ee.eea.util.iepe.IEPEInput;
-import tw.edu.sju.ee.eea.util.iepe.io.IepeInputStream;
+import tw.edu.sju.ee.eea.util.iepe.io.VoltageInputStream;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801IEPE;
 import tw.edu.sju.ee.eea.util.iepe.IEPEPlayer;
 
@@ -46,7 +46,7 @@ public class SystemPass {
             OutputStream playOut = player.getOutputStream();
             
             IEPEInput iepe = new IEPEInput(new MPS140801IEPE(0, 16000), new int[]{1}, 512);
-            IEPEInput.IepeStream iepeStream = new IEPEInput.IepeStream();
+            IEPEInput.IepePipeStream iepeStream = new IEPEInput.IepePipeStream();
             iepe.addStream(1, iepeStream);
             Thread thread = new Thread(iepe);
             thread.start();
@@ -57,7 +57,7 @@ public class SystemPass {
 //            file.createNewFile();
 //            FileOutputStream fos = new FileOutputStream(file);
 
-            for (int i = 0; i < 1000; i++) {
+            for (int i = 0; i < 10000; i++) {
                 byte[] buffer = new byte[64];
                 iepeStream.read(buffer);
                 playOut.write(buffer);

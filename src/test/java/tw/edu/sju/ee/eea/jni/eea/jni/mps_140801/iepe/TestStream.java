@@ -29,8 +29,8 @@ import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
 import tw.edu.sju.ee.eea.util.iepe.IEPEException;
 import tw.edu.sju.ee.eea.util.iepe.IEPEInput;
-import tw.edu.sju.ee.eea.util.iepe.io.QuantizationStream;
-import tw.edu.sju.ee.eea.util.iepe.io.IepeInputStream;
+import tw.edu.sju.ee.eea.util.iepe.io.QuantizationInputStream;
+import tw.edu.sju.ee.eea.util.iepe.io.VoltageInputStream;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801IEPE;
 
 /**
@@ -46,8 +46,8 @@ public class TestStream {
             thread.start();
 
             
-            IEPEInput.IepeStream vi_left = new IEPEInput.IepeStream();
-            IEPEInput.IepeStream vi_right = new IEPEInput.IepeStream();
+            IEPEInput.IepePipeStream vi_left = new IEPEInput.IepePipeStream();
+            IEPEInput.IepePipeStream vi_right = new IEPEInput.IepePipeStream();
             
             iepe.addStream(1, vi_left);
             iepe.addStream(2, vi_right);
@@ -112,8 +112,8 @@ public class TestStream {
 //            for (int i = 0; i < 10240; i++) {
 //                System.out.println(i + "\t" + qs.read());
 //            }
-            QuantizationStream qs_left = new QuantizationStream(vi_left, 16, 0.5);
-            QuantizationStream qs_right = new QuantizationStream(vi_right, 16, 0.5);
+            QuantizationInputStream qs_left = new QuantizationInputStream(vi_left, 16, 0.5);
+            QuantizationInputStream qs_right = new QuantizationInputStream(vi_right, 16, 0.5);
 
             for (int i = 0; i < 100000000; i++) {
 //                byte[] buffer = QuantizationStream.quantization(vi.readVoltage(), 16);
