@@ -13,5 +13,6 @@
         </group>
         <group name="sju-eea-jni"/>
         <group/>
+        <group name="ElectricalEquipmentAnalyzer"/>
     </open-files>
 </project-private>
