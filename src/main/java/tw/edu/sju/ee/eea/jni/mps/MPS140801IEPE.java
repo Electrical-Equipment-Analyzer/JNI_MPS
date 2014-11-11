@@ -9,14 +9,14 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tw.edu.sju.ee.eea.jni.util.NativeUtils;
-import tw.edu.sju.ee.eea.util.iepe.IEPEDevice;
-import tw.edu.sju.ee.eea.util.iepe.IEPEException;
+import tw.edu.sju.ee.eea.utils.io.tools.EEADevice;
+import tw.edu.sju.ee.eea.utils.io.tools.EEAException;
 
 /**
  *
  * @author Leo
  */
-public class MPS140801IEPE implements IEPEDevice {
+public class MPS140801IEPE implements EEADevice {
 
     public static final int CHANNEL = 8;
 
@@ -76,17 +76,17 @@ public class MPS140801IEPE implements IEPEDevice {
 
     //**************************************************************************
     @Override
-    public void openDevice() throws IEPEException {
+    public void openDevice() throws EEAException {
         this.openDevice(deviceNumber);
     }
 
     @Override
-    public void configure() throws IEPEException {
+    public void configure() throws EEAException {
         this.configure(sampleRate);
     }
 
     @Override
-    public double[][] read(int length) throws IEPEException {
+    public double[][] read(int length) throws EEAException {
         double[][] data = new double[MPS140801IEPE.CHANNEL][length];
         dataIn(data);
         return data;

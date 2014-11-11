@@ -17,16 +17,12 @@
  */
 package tw.edu.sju.ee.eea.jni.eea.jni.mps_140801.iepe;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import tw.edu.sju.ee.eea.util.iepe.IEPEException;
-import tw.edu.sju.ee.eea.util.iepe.IEPEInput;
-import tw.edu.sju.ee.eea.util.iepe.io.VoltageInputStream;
+import tw.edu.sju.ee.eea.utils.io.tools.EEAInput;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801IEPE;
+import tw.edu.sju.ee.eea.utils.io.tools.IOChannel;
 
 /**
  *
@@ -37,10 +33,10 @@ public class WriteFile {
     public static void main(String[] args) {
 
         try {
-            IEPEInput iepe = new IEPEInput(new MPS140801IEPE(0, 16000), new int[]{1}, 512);
+            EEAInput iepe = new EEAInput(new MPS140801IEPE(0, 16000), new int[]{1});
             
-            IEPEInput.IepePipeStream iepeStream = new IEPEInput.IepePipeStream();
-            iepe.addStream(1, iepeStream);
+            IOChannel.IepePipeStream iepeStream = new IOChannel.IepePipeStream();
+            iepe.getIOChannel(1).addStream(iepeStream);
             
             Thread thread = new Thread(iepe);
             thread.start();

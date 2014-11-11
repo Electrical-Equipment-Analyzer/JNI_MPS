@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import tw.edu.sju.ee.eea.util.iepe.IEPEPlayer;
+import tw.edu.sju.ee.eea.utils.io.tools.IEPEPlayer;
 
 /**
  *

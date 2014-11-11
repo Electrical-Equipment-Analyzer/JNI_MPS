@@ -18,7 +18,6 @@
 package tw.edu.sju.ee.eea.jni.eea.jni.mps_140801.iepe;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioFormat;
@@ -27,11 +26,10 @@ import javax.sound.sampled.Line;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
-import tw.edu.sju.ee.eea.util.iepe.IEPEException;
-import tw.edu.sju.ee.eea.util.iepe.IEPEInput;
-import tw.edu.sju.ee.eea.util.iepe.io.QuantizationInputStream;
-import tw.edu.sju.ee.eea.util.iepe.io.VoltageInputStream;
+import tw.edu.sju.ee.eea.utils.io.tools.EEAInput;
+import tw.edu.sju.ee.eea.utils.io.QuantizationInputStream;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801IEPE;
+import tw.edu.sju.ee.eea.utils.io.tools.IOChannel;
 
 /**
  *
@@ -41,16 +39,16 @@ public class TestStream {
 
     public static void main(String[] args) {
         try {
-            IEPEInput iepe = new IEPEInput(new MPS140801IEPE(0, 128000), new int[]{1, 2}, 512);
+            EEAInput iepe = new EEAInput(new MPS140801IEPE(0, 128000), new int[]{1, 2});
             Thread thread = new Thread(iepe);
             thread.start();
 
             
-            IEPEInput.IepePipeStream vi_left = new IEPEInput.IepePipeStream();
-            IEPEInput.IepePipeStream vi_right = new IEPEInput.IepePipeStream();
+            IOChannel.IepePipeStream vi_left = new IOChannel.IepePipeStream();
+            IOChannel.IepePipeStream vi_right = new IOChannel.IepePipeStream();
             
-            iepe.addStream(1, vi_left);
-            iepe.addStream(2, vi_right);
+            iepe.getIOChannel(1).addStream(vi_left);
+            iepe.getIOChannel(2).addStream(vi_right);
             
 //            VoltageInputStream vi = new VoltageInputStream(iepe.getIepeStreams(0));
 //            IepeInputStream vi_left = iepe.getIepeStreams(0);

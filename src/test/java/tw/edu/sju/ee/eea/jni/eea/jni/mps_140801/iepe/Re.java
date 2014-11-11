@@ -24,8 +24,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801IEPE;
 import tw.edu.sju.ee.eea.jni.mps.MPSException;
-import tw.edu.sju.ee.eea.util.iepe.IEPEException;
-import tw.edu.sju.ee.eea.util.iepe.IEPEInput;
+import tw.edu.sju.ee.eea.utils.io.tools.EEAException;
+import tw.edu.sju.ee.eea.utils.io.tools.EEAInput;
 
 /**
  *

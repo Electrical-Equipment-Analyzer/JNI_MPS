@@ -6,13 +6,13 @@
 
 package tw.edu.sju.ee.eea.jni.mps;
 
-import tw.edu.sju.ee.eea.util.iepe.IEPEException;
+import tw.edu.sju.ee.eea.utils.io.tools.EEAException;
 
 /**
  *
  * @author Leo
  */
-public class MPSException extends IEPEException {
+public class MPSException extends EEAException {
 
     public MPSException(String message) {
         super(message);
