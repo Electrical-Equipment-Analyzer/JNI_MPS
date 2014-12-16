@@ -35,7 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/src/MPS140801IEPE.o \
+	${OBJECTDIR}/src/MPS140801.o \
 	${OBJECTDIR}/src/NativeUtils.o
 
 
@@ -63,10 +63,10 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jniMPS.${CND_DLIB_EXT}: ${OBJECTFILES
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jniMPS.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -shared
 
-${OBJECTDIR}/src/MPS140801IEPE.o: src/MPS140801IEPE.cpp 
+${OBJECTDIR}/src/MPS140801.o: src/MPS140801.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../../../target/header -I/cygdrive/C/Program\ Files/Java/jdk1.8.0_20/include -I/cygdrive/C/Program\ Files/Java/jdk1.8.0_20/include/win32  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/MPS140801IEPE.o src/MPS140801IEPE.cpp
+	$(COMPILE.cc) -g -I../../../target/header -I/cygdrive/C/Program\ Files/Java/jdk1.8.0_20/include -I/cygdrive/C/Program\ Files/Java/jdk1.8.0_20/include/win32  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/MPS140801.o src/MPS140801.cpp
 
 ${OBJECTDIR}/src/NativeUtils.o: src/NativeUtils.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src

@@ -62,7 +62,7 @@ JAVA_CLASS_NATIVE=${TARGET_DIR}/classes/native/64/windows/
 build: .build-post
 
 .build-pre:
-	${JAVAH} ${JAVAH_FLAGS} tw.edu.sju.ee.eea.jni.mps.MPS140801IEPE
+	${JAVAH} ${JAVAH_FLAGS} tw.edu.sju.ee.eea.jni.mps.MPS140801
 # Add your pre 'build' code here...
 
 .build-post: .build-impl

@@ -7,7 +7,7 @@
 
 #include <windows.h>
 #include <jni.h>
-#include "MPS_140801_IEPE.h"
+#include "MPS140801.h"
 
 #ifndef NATIVEUTILS_H
 #define	NATIVEUTILS_H

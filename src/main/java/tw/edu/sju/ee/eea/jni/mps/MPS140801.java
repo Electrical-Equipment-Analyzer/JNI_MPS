@@ -16,7 +16,7 @@ import tw.edu.sju.ee.eea.utils.io.tools.EEAException;
  *
  * @author Leo
  */
-public class MPS140801IEPE implements EEADevice {
+public class MPS140801 implements EEADevice {
 
     public static final int CHANNEL = 8;
 
@@ -28,16 +28,16 @@ public class MPS140801IEPE implements EEADevice {
             NativeUtils.loadLibraryFromJar("jniMPS");
             loadLibrary(NativeUtils.temp("libs/MPS-140801x64").getAbsolutePath());
         } catch (IOException ex) {
-            Logger.getLogger(MPS140801IEPE.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MPS140801.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MPSException ex) {
-            Logger.getLogger(MPS140801IEPE.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MPS140801.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     //**************************************************************************
     //Java Object
     private long nativeStruct;
 
-    public MPS140801IEPE(int deviceNumber, int sampleRate) {
+    public MPS140801(int deviceNumber, int sampleRate) {
         construct();
         this.deviceNumber = deviceNumber;
         this.sampleRate = sampleRate;
@@ -87,7 +87,7 @@ public class MPS140801IEPE implements EEADevice {
 
     @Override
     public double[][] read(int length) throws EEAException {
-        double[][] data = new double[MPS140801IEPE.CHANNEL][length];
+        double[][] data = new double[MPS140801.CHANNEL][length];
         dataIn(data);
         return data;
     }

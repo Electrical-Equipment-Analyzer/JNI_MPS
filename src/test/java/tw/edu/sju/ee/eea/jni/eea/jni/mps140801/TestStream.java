@@ -15,14 +15,9 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+package tw.edu.sju.ee.eea.jni.eea.jni.mps140801;
 
-package tw.edu.sju.ee.eea.jni.eea.jni.mps_140801.iepe;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioFormat;
@@ -31,17 +26,50 @@ import javax.sound.sampled.Line;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
+import tw.edu.sju.ee.eea.utils.io.tools.EEAInput;
 import tw.edu.sju.ee.eea.utils.io.QuantizationInputStream;
-import tw.edu.sju.ee.eea.utils.io.ValueInputStream;
+import tw.edu.sju.ee.eea.jni.mps.MPS140801;
+import tw.edu.sju.ee.eea.utils.io.tools.IOChannel;
 
 /**
  *
  * @author Leo
  */
-public class ReadFile {
+public class TestStream {
+
     public static void main(String[] args) {
-        FileInputStream fis = null;
         try {
+            EEAInput iepe = new EEAInput(new MPS140801(0, 128000), new int[]{1, 2});
+            Thread thread = new Thread(iepe);
+            thread.start();
+
+            
+            IOChannel.IepePipeStream vi_left = new IOChannel.IepePipeStream();
+            IOChannel.IepePipeStream vi_right = new IOChannel.IepePipeStream();
+            
+            iepe.getIOChannel(1).addStream(vi_left);
+            iepe.getIOChannel(2).addStream(vi_right);
+            
+//            VoltageInputStream vi = new VoltageInputStream(iepe.getIepeStreams(0));
+//            IepeInputStream vi_left = iepe.getIepeStreams(0);
+//            IepeInputStream vi_right = iepe.getIepeStreams(1);
+//            for (int i = 0; i < 100; i++) {
+//                System.out.println(vi.readVoltage());
+//            }
+//            QuantizationStream qs = new QuantizationStream(vi, 2);
+//            for (int i = 0; i < 100; i++) {
+//                byte[] buffer = new byte[2];
+//                qs.read(buffer);
+//                short aa = (short) ((buffer[0]) & 0xFF);
+//                aa |= (buffer[1] << 8) & 0xFF00;
+//                System.out.println(aa);
+//            }
+
+//            try {
+//                Thread.sleep(5000);
+//            } catch (InterruptedException ex) {
+//                Logger.getLogger(TestStream.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             SourceDataLine audioOut = null;
 //            Clip audioOut = null;
             Mixer.Info[] mixerInfos = AudioSystem.getMixerInfo();
@@ -63,7 +91,7 @@ public class ReadFile {
                 if (audioOut != null) {
                     try {
                         AudioFormat currentFormat = audioOut.getFormat();
-                        audioOut.open(new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 16000, 8, 1, 1, 16000, currentFormat.isBigEndian()));
+                        audioOut.open(new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 128000, 16, 2, 4, 128000, currentFormat.isBigEndian()));
 //                        audioOut.open(new AudioInputStream(qs, new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 128000, 8, 1, 1, 128000, currentFormat.isBigEndian()), 10240000));
                         break;      //  Viable line found -- search no more!
                     } catch (LineUnavailableException lue) {
@@ -76,44 +104,33 @@ public class ReadFile {
                 System.out.println("Unable Play Sounds");
                 return;
             }
+
             audioOut.start();
+
 //            for (int i = 0; i < 10240; i++) {
 //                System.out.println(i + "\t" + qs.read());
 //            }
-            File file = new File("rec.iepe");
-            file.setReadOnly();
-            fis = new FileInputStream(file);
-            ValueInputStream vi = new ValueInputStream(fis);
-//            for (int i = 0; i < 128; i++) {
-//                System.out.print(vi.readValue() + ", ");
-//            }
-            QuantizationInputStream qs = new QuantizationInputStream(vi, 8);
-//            vi.skip(1500000);
+            QuantizationInputStream qs_left = new QuantizationInputStream(vi_left, 16, 0.5);
+            QuantizationInputStream qs_right = new QuantizationInputStream(vi_right, 16, 0.5);
+
             for (int i = 0; i < 100000000; i++) {
-                
-                byte[] buffer = qs.readQuantization();
 //                byte[] buffer = QuantizationStream.quantization(vi.readVoltage(), 16);
-//                byte[] left = QuantizationStream.quantization(vi_left.readVoltage(), 16);
-//                byte[] right = QuantizationStream.quantization(vi_right.readVoltage(), 16);
-//                byte[] buffer = new byte[left.length + right.length];
-//                System.arraycopy(left, 0, buffer, 0, left.length);
-//                System.arraycopy(right, 0, buffer, left.length, right.length);
+                byte[] left = qs_left.readQuantization();
+                byte[] right = qs_right.readQuantization();
+                byte[] buffer = new byte[left.length + right.length];
+                System.arraycopy(left, 0, buffer, 0, left.length);
+                System.arraycopy(right, 0, buffer, left.length, right.length);
 //                int read = QuantizationStream.quantization(vi.readVoltage(), 16);
 //                System.out.println("\t" + Arrays.toString(buffer));
                 audioOut.write(buffer, 0, buffer.length);
             }
             System.out.println("Stop");
             audioOut.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ReadFile.class.getName()).log(Level.SEVERE, null, ex);
+            thread.stop();
+
         } catch (IOException ex) {
-            Logger.getLogger(ReadFile.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                fis.close();
-            } catch (IOException ex) {
-                Logger.getLogger(ReadFile.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Logger.getLogger(TestStream.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 }

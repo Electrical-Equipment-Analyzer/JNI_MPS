@@ -15,13 +15,13 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package tw.edu.sju.ee.eea.jni.eea.jni.mps_140801.iepe;
+package tw.edu.sju.ee.eea.jni.eea.jni.mps140801;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tw.edu.sju.ee.eea.utils.io.tools.EEAInput;
-import tw.edu.sju.ee.eea.jni.mps.MPS140801IEPE;
+import tw.edu.sju.ee.eea.jni.mps.MPS140801;
 import tw.edu.sju.ee.eea.utils.io.tools.IOChannel;
 
 /**
@@ -33,7 +33,7 @@ public class WriteFile {
     public static void main(String[] args) {
 
         try {
-            EEAInput iepe = new EEAInput(new MPS140801IEPE(0, 16000), new int[]{1});
+            EEAInput iepe = new EEAInput(new MPS140801(0, 16000), new int[]{1});
             
             IOChannel.IepePipeStream iepeStream = new IOChannel.IepePipeStream();
             iepe.getIOChannel(1).addStream(iepeStream);
