@@ -92,4 +92,9 @@ public class MPS140801 implements EEADevice {
         return data;
     }
 
+    @Override
+    public int getChannelLength() throws EEAException {
+        return MPS140801.CHANNEL;
+    }
+
 }
