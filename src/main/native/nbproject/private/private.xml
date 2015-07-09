@@ -13,6 +13,9 @@
         </group>
         <group name="sju-eea-jni"/>
         <group/>
-        <group name="ElectricalEquipmentAnalyzer"/>
+        <group name="ElectricalEquipmentAnalyzer">
+            <file>file:/C:/Users/D10307009/Documents/NetBeansProjects/ElectricalEquipmentAnalyzer/sju-daq.jni-mps/src/main/native/nbproject/project.xml</file>
+            <file>file:/C:/Users/D10307009/Documents/NetBeansProjects/ElectricalEquipmentAnalyzer/sju-daq.jni-mps/src/main/native/nbproject/configurations.xml</file>
+        </group>
     </open-files>
 </project-private>

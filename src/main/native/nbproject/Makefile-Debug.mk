@@ -66,12 +66,12 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/jniMPS.${CND_DLIB_EXT}: ${OBJECTFILES
 ${OBJECTDIR}/src/MPS140801.o: src/MPS140801.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../../../target/header -I/cygdrive/C/Program\ Files/Java/jdk1.8.0_20/include -I/cygdrive/C/Program\ Files/Java/jdk1.8.0_20/include/win32  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/MPS140801.o src/MPS140801.cpp
+	$(COMPILE.cc) -g -I../../../target/header -I/cygdrive/C/Program\ Files/Java/jdk1.8.0_45/include -I/cygdrive/C/Program\ Files/Java/jdk1.8.0_45/include/win32  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/MPS140801.o src/MPS140801.cpp
 
 ${OBJECTDIR}/src/NativeUtils.o: src/NativeUtils.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../../../target/header -I/cygdrive/C/Program\ Files/Java/jdk1.8.0_20/include -I/cygdrive/C/Program\ Files/Java/jdk1.8.0_20/include/win32  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NativeUtils.o src/NativeUtils.cpp
+	$(COMPILE.cc) -g -I../../../target/header -I/cygdrive/C/Program\ Files/Java/jdk1.8.0_45/include -I/cygdrive/C/Program\ Files/Java/jdk1.8.0_45/include/win32  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NativeUtils.o src/NativeUtils.cpp
 
 # Subprojects
 .build-subprojects:
