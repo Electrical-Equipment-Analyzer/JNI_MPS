@@ -38,10 +38,10 @@ public class Re {
         try {
             mps.openDevice(0);
             System.out.println(mps.getDeviceId());
-            mps.configure(128000);
+            mps.configure(16000);
             mps.start();
             try {
-                for (int i = 0; i < 100; i++) {
+                for (int i = 0; i < 1; i++) {
                     double[][] read = mps.read(10);
                     for (int j = 0; j < read.length; j++) {
                         System.out.println(Arrays.toString(read[j]));

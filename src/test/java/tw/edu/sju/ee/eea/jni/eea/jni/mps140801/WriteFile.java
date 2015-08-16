@@ -22,7 +22,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import tw.edu.sju.ee.eea.utils.io.tools.EEAInput;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801;
-import tw.edu.sju.ee.eea.utils.io.tools.IOChannel;
+import tw.edu.sju.ee.eea.utils.io.ChannelInputStream;
+import tw.edu.sju.ee.eea.utils.io.tools.InputChannel;
 
 /**
  *
@@ -35,7 +36,7 @@ public class WriteFile {
         try {
             EEAInput iepe = new EEAInput(new MPS140801(0, 16000), new int[]{1});
             
-            IOChannel.IepePipeStream iepeStream = new IOChannel.IepePipeStream();
+            ChannelInputStream iepeStream = new ChannelInputStream();
             iepe.getIOChannel(1).addStream(iepeStream);
             
             Thread thread = new Thread(iepe);
@@ -47,7 +48,7 @@ public class WriteFile {
 //            file.createNewFile();
 //            FileOutputStream fos = new FileOutputStream(file);
 
-            for (int i = 0; i < 1000000; i++) {
+            for (int i = 0; i < 1000; i++) {
 //                byte[] buffer = new byte[64];
                 double readValue = iepeStream.readValue();
                 System.out.println(readValue);

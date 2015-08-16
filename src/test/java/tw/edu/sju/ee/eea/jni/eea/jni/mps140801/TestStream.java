@@ -29,7 +29,8 @@ import javax.sound.sampled.SourceDataLine;
 import tw.edu.sju.ee.eea.utils.io.tools.EEAInput;
 import tw.edu.sju.ee.eea.utils.io.QuantizationInputStream;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801;
-import tw.edu.sju.ee.eea.utils.io.tools.IOChannel;
+import tw.edu.sju.ee.eea.utils.io.ChannelInputStream;
+import tw.edu.sju.ee.eea.utils.io.tools.InputChannel;
 
 /**
  *
@@ -44,8 +45,8 @@ public class TestStream {
             thread.start();
 
             
-            IOChannel.IepePipeStream vi_left = new IOChannel.IepePipeStream();
-            IOChannel.IepePipeStream vi_right = new IOChannel.IepePipeStream();
+            ChannelInputStream vi_left = new ChannelInputStream();
+            ChannelInputStream vi_right = new ChannelInputStream();
             
             iepe.getIOChannel(1).addStream(vi_left);
             iepe.getIOChannel(2).addStream(vi_right);
@@ -113,7 +114,7 @@ public class TestStream {
             QuantizationInputStream qs_left = new QuantizationInputStream(vi_left, 16, 0.5);
             QuantizationInputStream qs_right = new QuantizationInputStream(vi_right, 16, 0.5);
 
-            for (int i = 0; i < 100000000; i++) {
+            for (int i = 0; i < 10000; i++) {
 //                byte[] buffer = QuantizationStream.quantization(vi.readVoltage(), 16);
                 byte[] left = qs_left.readQuantization();
                 byte[] right = qs_right.readQuantization();

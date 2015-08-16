@@ -28,8 +28,9 @@ import tw.edu.sju.ee.eea.utils.io.tools.EEAException;
 import tw.edu.sju.ee.eea.utils.io.tools.EEAInput;
 import tw.edu.sju.ee.eea.utils.io.ValueInputStream;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801;
+import tw.edu.sju.ee.eea.utils.io.ChannelInputStream;
 import tw.edu.sju.ee.eea.utils.io.tools.IEPEPlayer;
-import tw.edu.sju.ee.eea.utils.io.tools.IOChannel;
+import tw.edu.sju.ee.eea.utils.io.tools.InputChannel;
 
 /**
  *
@@ -47,7 +48,7 @@ public class SystemPass {
             OutputStream playOut = player.getOutputStream();
             
             EEAInput iepe = new EEAInput(new MPS140801(0, 16000), new int[]{1});
-            IOChannel.IepePipeStream iepeStream = new IOChannel.IepePipeStream();
+            ChannelInputStream iepeStream = new ChannelInputStream();
             iepe.getIOChannel(1).addStream(iepeStream);
             Thread thread = new Thread(iepe);
             thread.start();
