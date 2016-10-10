@@ -17,13 +17,19 @@
  */
 package tw.edu.sju.ee.eea.jni.eea.jni.mps140801;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tw.edu.sju.ee.eea.utils.io.tools.EEAInput;
 import tw.edu.sju.ee.eea.jni.mps.MPS140801;
 import tw.edu.sju.ee.eea.utils.io.ChannelInputStream;
-import tw.edu.sju.ee.eea.utils.io.tools.InputChannel;
 
 /**
  *
@@ -35,25 +41,41 @@ public class WriteFile {
 
         try {
             EEAInput iepe = new EEAInput(new MPS140801(0, 16000), new int[]{1});
-            
-            ChannelInputStream iepeStream = new ChannelInputStream();
-            iepe.getIOChannel(1).addStream(iepeStream);
-            
+
+            ChannelInputStream iepeStream[] = new ChannelInputStream[8];
+            for (int i = 0; i < iepeStream.length; i++) {
+                iepeStream[i] = new ChannelInputStream();
+                iepe.getIOChannel(i).addStream(iepeStream[i]);
+            }
+
             Thread thread = new Thread(iepe);
             thread.start();
 //            IepeInputStream iepeStreams = iepe.getIepeStreams(0);
 //            VoltageInputStream vi_left = new VoltageInputStream(iepe.getIepeStreams(0));
 
-//            File file = new File("rec3.iepe");
+//            File file = new File("text.adc");
 //            file.createNewFile();
-//            FileOutputStream fos = new FileOutputStream(file);
+////            FileOutputStream fos = new FileOutputStream(file);
+//            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
 
-            for (int i = 0; i < 1000; i++) {
+            while (!Thread.interrupted()) {
+                File file = new File(sdFormat.format(new Date()) + ".adc");
+                file.createNewFile();
+                PrintWriter pw = new PrintWriter(file);
+                for (int i = 0; i < 16000 * 60; i++) {
+                    for (int j = 0; j < iepeStream.length; j++) {
+                        pw.print(iepeStream[j].readValue());
+                        pw.print("\t");
+                    }
+                    pw.print("\n");
 //                byte[] buffer = new byte[64];
-                double readValue = iepeStream.readValue();
-                System.out.println(readValue);
+//                    double readValue = iepeStream.readValue();
+//                    System.out.println(readValue);
 //                System.out.println(Arrays.toString(buffer));
 //                fos.write(buffer, 0, buffer.length);
+                }
+                pw.close();
             }
 //            fos.close();
 
